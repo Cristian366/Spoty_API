@@ -2,6 +2,7 @@ const contenedor = document.getElementById('contenedor')
 const btnLoad = document.getElementById('btnLoad')
 const cardMusic = document.getElementById('cardMusic').content
 const fragment = document.createDocumentFragment()
+const paises = document.getElementById('paises')
 let canciones = []
 
 btnLoad.addEventListener('click', () => {
@@ -13,8 +14,10 @@ btnLoad.addEventListener('click', () => {
             'X-RapidAPI-Host': 'spotify81.p.rapidapi.com'
         }
     };
+
     
-    fetch('https://spotify81.p.rapidapi.com/top_200_tracks', options)
+    
+    fetch('https://spotify81.p.rapidapi.com/top_200_tracks?coutry=${paise.value}', options)
         .then(response => response.json())
         .then(response => {
             canciones = response
@@ -23,4 +26,16 @@ btnLoad.addEventListener('click', () => {
         })
         .catch(err => console.log(err));
 })
- min26
+ 
+const creaTarjetas = () => {
+    contenedor.innerHTML = ''
+    canciones.forEach((item) => {
+        console.log(item)
+        cardMusic.querySelector('img').setAttribute('src',trackMetadata.displayImageUri)
+        cardMusic.querySelector('p').textContent = item.trackName
+        const clone = cardMusic.cloneNode(true)
+        fragment.appendChild(clone)
+    })
+    contenedor.appendChild(fragment) 
+}
+
