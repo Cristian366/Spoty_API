@@ -17,12 +17,12 @@ btnLoad.addEventListener('click', () => {
 
     
     
-    fetch('https://spotify81.p.rapidapi.com/top_200_tracks?coutry=${paise.value}', options)
+    fetch(`https://spotify81.p.rapidapi.com/top_200_tracks?coutry=${paises.value}`, options)
         .then(response => response.json())
         .then(response => {
             canciones = response
             console.log(canciones)
-            //creaTarjetas
+            creaTarjetas()
         })
         .catch(err => console.log(err));
 })
